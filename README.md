@@ -6,34 +6,49 @@ _GitHub scans repositories for known types of secrets, such as API keys and auth
 
 </header>
 
-## Welcome
+## Step 1: Enable Secret Scanning
 
-Plain-text credentials accidentally stored in repositories on GitHub are a common target for attackers.  In fact, we find well over a million tokens stored on the GitHub platform each year. Secret scanning is a powerful tool which allows teams to identify these plain-text credentials, remove them, and create rules to prevent them from being written to GitHub in the first place.
+_Welcome to "Introduction to Secret Scanning"! :wave:_
 
-Secret scanning is available for free for public repositories on all plans. Enterprises that need secret scanning capabilities for private repositories should review [GitHub Advanced Security](https://docs.github.com/en/enterprise-cloud@latest/get-started/learning-about-github/about-github-advanced-security). GitHub Advanced Security allows you to use secret scanning and other security features on private and internal repositories.
+In this step, you will enable secret scanning on this repository. Once secret scanning is enabled, you will add a new credential to see how secret scanning identifies the credential.
 
-- **Who is this for**: Developers, DevOps Engineers, security teams.
-- **What you'll learn**: How to identify plain-text credentials in your repository and how to prevent them from being exposed on GitHub in future pushes.
-- **Prerequisites**: Basics of git and GitHub functionality. We recommend you complete [Introduction to GitHub](https://github.com/skills/introduction-to-github).
-- **How long**: This course takes less than 15 minutes to complete.
+**What is a secret**: In the context of secret scanning, a secret (or credential) is a plain-text string, or a pair of strings, that authorizes a user to access a service. Examples could be AWS secret access keys/ID's, Google API keys, or Stripe API tokens. GitHub Docs hosts a list of [all supported patterns](https://docs.github.com/en/code-security/secret-scanning/secret-scanning-patterns#supported-secrets).
 
-In this course, you will:
+### :keyboard: Activity 1.1: Enable secret scanning
 
-1. Enable secret scanning
-2. Identify secrets stored in your repository
-3. Enable push protection
-4. Stop secrets from being written to your repository
+Secret scanning is enabled by default for all new public repositories. If you're working in a public repository, you can go straight to "Activity 1.2: Commit a token." For private or internal repositories, secret scanning is available with [GitHub Advanced Security](https://docs.github.com/en/enterprise-cloud@latest/get-started/learning-about-github/about-github-advanced-security).
 
-### How to start this course
+1. Open a new browser tab, and work on the steps in your second tab while you read the instructions in this tab.
+2. In your newly created repository, select **Settings** from the top navigation bar.
+3. Under the **Security** section on the left side, select **Code security and analysis**.
+4. Scroll to the bottom of this page and select the **Enable** button next to "Secret scanning."
 
-[![start-course](https://user-images.githubusercontent.com/1221423/235727646-4a590299-ffe5-480d-8cd5-8194ea184546.svg)](https://github.com/new?template_owner=skills&template_name=introduction-to-secret-scanning&owner=%40me&name=skills-introduction-to-secret-scanning&description=GitHub+Skills:+Introduction+to+Secret+Scanning&visibility=public)
+> [!IMPORTANT]
+> When you enable secret scanning, you may receive an email notification about credentials in your repository. Don't worry! The tokens in this Skills repository are inactive. There is no risk to your environment.
 
-1. Right-click **Start course** and open the link in a new tab.
-2. In the new tab, most of the prompts will automatically fill in for you.
-   - For owner, choose your personal account or an organization to host the repository.
-   - You will need to make the repository public, as private repositories do not have access to secret scanning without a [GitHub Advanced Security](https://docs.github.com/en/enterprise-cloud@latest/get-started/learning-about-github/about-github-advanced-security) license.
-   - Scroll down and click the **Create repository** button at the bottom of the form.
-3. After your new repository is created, wait about 20 seconds, then refresh the page. Follow the step-by-step instructions in the new repository's README.
+### :keyboard: Activity 1.2: Commit a token
+
+Now that you have secret scanning enabled in this repository, let's commit a new token to see how it works. You'll commit an AWS key and access ID to the repository. Don't worry, this is an inactive token that can't be used to log in to AWS.
+
+1. You should continue to work on activities in a second browser tab.
+2. Click the **Code** tab in your repository.
+3. Display the `credentials.yml` file.
+4. Click the Edit button to the right.
+
+    ![A screenshot of credentials.yml on the GitHub web interface with the edit button outlined](/images/edit-credentials-file.png)
+
+5. Copy the following text and paste it at the bottom of the `credentials.yml` file.
+
+    ```yaml
+    default:
+      aws_access_key_id: AKIAQYLPMN5HNM4OZ56B
+      aws_secret_access_key: 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
+      output: json
+      region: us-east-2
+    ```
+
+6. Click **Commit changes...** at the top right. The "Commit changes" window is displayed. Leave the defaults configured, and click **Commit changes** to commit directly to the `main` branch.
+7. Wait about 20 seconds, then refresh this page (the one you're following instructions from). A GitHub Actions workflow in the repository will run and automatically replace this contents of this `README` file with instructions for the next step.
 
 <footer>
 
